@@ -6,12 +6,6 @@ from mysql.connector import Error
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
-        self.queryAddIngr = ("INSERT INTO ingredients (ingr_group_id, calories, provider_id, ingredient_name) "
-                             "VALUES (%s, %s, %s, %s)")
-        self.queryAddRecipt = ("INSERT INTO recipt (recipt_id, recipt_name, descrption, author_id) "
-                               "VALUE (%s. %s, %s, %s)")
-        self.queryAddSupplier = ("INSERT INTO providers (provider_id, provider_name, address, phone)"
-                                 "VALUE (%s, %s, %s, %s)")
         self.buttons = []
         self.rows = 0
         self.columns = 0
@@ -20,30 +14,30 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.createbtn("Add ingredient", self.btn1Window)
-        # self.createbtn("Edit ingredient", self.btn1)
-        # self.createbtn("Delete ingredient", self.btn1)
-        # self.createbtn("Add recipe", self.btn1)
-        # self.createbtn("Edit recipe", self.btn1)
-        # self.createbtn("Delete recipe", self.btn1)
-        # self.createbtn("Add supplier", self.btn1)
-        # self.createbtn("Edit supplier", self.btn1)
-        # self.createbtn("Delete supplier", self.btn1)
+        self.createbtn(self, "Add ingredient", self.btn1Window)
+        self.createbtn(self, "Edit ingredient", self.btn1Window)
+        self.createbtn(self, "Delete ingredient", self.btn1Window)
+        self.createbtn(self, "Add recipe", self.btn1Window)
+        self.createbtn(self, "Edit recipe", self.btn1Window)
+        self.createbtn(self, "Delete recipe", self.btn1Window)
+        self.createbtn(self, "Add supplier", self.btn1Window)
+        self.createbtn(self, "Edit supplier", self.btn1Window)
+        self.createbtn(self, "Delete supplier", self.btn1Window)
+        self.createbtn(self, "QUIT", self.master.destroy)
 
-        # quit
-        self.quit = tk.Button(self, text="QUIT", fg="red", command=self.master.destroy)
-        self.quit.grid(row=self.rows + 1, column=self.columns + 1, ipadx=10, ipady=6, padx=10, pady=10)
-
-    def createbtn(self, text, command):
-        self.newButtn = tk.Button(self)
+    def createbtn(self, master, text, command, *args):
+        self.newButtn = tk.Button(master)
         self.newButtn["text"] = text
-        self.newButtn["command"] = command()
-        self.newButtn.grid(row=self.rows, column=self.columns, ipadx=10, ipady=6, padx=10, pady=10)
-        self.columns += 1
-        if self.columns == 3:
-            self.columns = 0
-            self.rows += 1
-        self.buttons.append(self.newButtn)
+        self.newButtn["command"] = command
+        if master != self:
+            self.newButtn.grid(row=args[0], column=args[1], ipadx=10, ipady=6, padx=10, pady=10)
+        else:
+            self.newButtn.grid(row=self.rows, column=self.columns, ipadx=10, ipady=6, padx=10, pady=10)
+            self.columns += 1
+            if self.columns == 3:
+                self.columns = 0
+                self.rows += 1
+            self.buttons.append(self.newButtn)
 
     # connect to kb
     def connect(self, state=True):
@@ -60,15 +54,42 @@ class Application(tk.Frame):
 
     # command for btn1
     def btn1Window (self):
-        btn1Window = tk.Toplevel()
-        btn1Window.title("Add ingredient")
+        self.btn1Window = tk.Toplevel(root)
+        self.btn1Window.title("Add ingredient")
+        self.ingr_group_id = tk.IntVar()
+        self.calories = tk.StringVar()
+        self.provider_id = tk.StringVar()
+        self.ingredient_name = tk.StringVar()
+        self.label1 = tk.Label(self.btn1Window, text="Ingredient group ID")
+        self.label1.grid(row=0, column=0, ipadx=10, ipady=6, padx=10, pady=10)
+        self.label2 = tk.Label(self.btn1Window, text="Calories")
+        self.label2.grid(row=0, column=1, ipadx=10, ipady=6, padx=10, pady=10)
+        self.label3 = tk.Label(self.btn1Window, text="Supplier ID")
+        self.label3.grid(row=0, column=2, ipadx=10, ipady=6, padx=10, pady=10)
+        self.label4 = tk.Label(self.btn1Window, text="Ingredient name")
+        self.label4.grid(row=0, column=3, ipadx=10, ipady=6, padx=10, pady=10)
+        self.group_entry = tk.Entry(master=self.btn1Window, textvariable=self.ingr_group_id)
+        self.group_entry.grid(row=1, column=0, ipadx=10, ipady=6, padx=10, pady=10)
+        self.calories_entry = tk.Entry(master=self.btn1Window, textvariable=self.calories)
+        self.calories_entry.grid(row=1, column=1, ipadx=10, ipady=6, padx=10, pady=10)
+        self.provider_id_entry = tk.Entry(master=self.btn1Window, textvariable=self.provider_id)
+        self.provider_id_entry.grid(row=1, column=2, ipadx=10, ipady=6, padx=10, pady=10)
+        self.ingredient_name_entry = tk.Entry(master=self.btn1Window, textvariable=self.ingredient_name)
+        self.ingredient_name_entry.grid(row=1, column=3, ipadx=10, ipady=6, padx=10, pady=10)
+        self.createbtn(self.btn1Window, "Add", self.addtokb, 2, 1)
+        self.createbtn(self.btn1Window, "QUIT", self.btn1Window.destroy, 2, 2)
 
-    def addtokb(self, query):
+    # def createEntery(self, master, textvariable):
+
+
+    def addtokb(self):
         try:
-            data = (1, 0.18, 4, "Orange")
+            sql = """INSERT INTO ingredients(ingr_group_id, calories, provider_id, ingredient_name) 
+            VALUES (%s, %s, %s, %s)""", (self.ingr_group_id, self.calories, self.provider_id, self.ingredient_name)
+            # data = (self.ingr_group_id, self.calories, self.provider_id, self.ingredient_name)
             conn = self.connect()
             cursor = conn.cursor()
-            cursor.execute(query, data)
+            cursor.execute(sql)
         except Error as e:
             print(e)
         finally:
