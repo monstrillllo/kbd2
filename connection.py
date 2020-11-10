@@ -2,25 +2,30 @@ import mysql.connector
 from mysql.connector import Error
 
 
-def connect():
-    try:
-        conn = mysql.connector.connect(host='localhost', database='food', user='monstrillllo',
+class connection():
+    def __init__(self, query, val):
+        self.conn = None
+        self.cursor = None
+        self.query = query
+        self.val = val
+        self.addtokb(self.query, self.val)
+
+    def connect(self):
+        try:
+            conn = mysql.connector.connect(host='localhost', database='food', user='monstrillllo',
                                            password='123q123w123e')
-        return conn
-    except Error as e:
-        print(e)
+            return conn
+        except Error as e:
+            print(e)
 
-def disconnect(conn):
-    conn.close()
-
-def addtokb(query, val):
-    try:
-        conn = connect()
-        cursor = conn.cursor()
-        cursor.execute(query, val)
-    except Error as e:
-        print(e)
-    finally:
-        conn.commit()
-        cursor.close()
-        conn.close()
+    def addtokb(self, query, val):
+        try:
+            self.conn = self.connect()
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(query, val)
+        except Error as e:
+            print(e)
+        finally:
+            self.conn.commit()
+            self.cursor.close()
+            self.conn.close()

@@ -5,12 +5,12 @@ EditIngr = "UPDATE ingredients " \
 DeleteIngr = "DELETE FROM ingredients " \
            "WHERE ingredient_name = '%s'"
 
-AddRecipt = "INSERT INTO recipt ( recipt_id, recipt_name, description, author_id ) " \
+AddRecipe = "INSERT INTO recipe ( recipe_id, recipe_name, description, author_id ) " \
             "VALUES ( %s, %s, %s, %s )"
-EditRecipt = "UPDATE recipt " \
-             "SET recipt_id = %s, recipt_name = %s, description = %s, author_id = %s WHERE recipt_name = %s"
-DeleteRecipt = "DELETE FROM recipt " \
-               "WHERE recipt_name = '%s'"
+EditRecipe = "UPDATE recipe " \
+             "SET recipe_id = %s, recipe_name = %s, description = %s, author_id = %s WHERE recipe_name = %s"
+DeleteRecipe = "DELETE FROM recipe " \
+               "WHERE recipe_name = '%s'"
 
 AddSupplier = "INSERT INTO providers ( provider_id, provider_name, address, phone ) " \
                "VALUES ( %s, %s, %s, %s )"
