@@ -13,6 +13,7 @@ class TopLevelWindow():
         self.master = master
         self.title = title
         self.lables = args
+        self.newVariable = None
         self.variables = []
         self.row = 0
         self.column = 0
@@ -32,13 +33,13 @@ class TopLevelWindow():
     def addButtons(self):
         NewButtons(self.newWindow, self.title, self.tokb, self.row, 0)
         NewButtons(self.newWindow, "QUIT", self.newWindow.destroy, self.row, 1)
-        self.row +=1
+        self.row += 1
 
     def addEntery(self):
         for lab in self.lables:
-            newVariable = StringVar()
-            self.variables.append(newVariable)
-            NewEntery(self.newWindow, newVariable, self.row, self.column)
+            self.newVariable = StringVar()
+            self.variables.append(self.newVariable)
+            NewEntery(self.newWindow, self.newVariable, self.row, self.column)
             self.column += 1
         self.column = 0
         self.row += 1
@@ -59,7 +60,7 @@ class TopLevelWindow():
         if self.title == "Edit recipe":
             connection(EditRecipe, val)
         if self.title == "Delete recipe":
-            connection(DeleteRecipt, val)
+            connection(DeleteRecipe, val)
 
         if self.title == "Add Supplier":
             connection(AddSupplier, val)

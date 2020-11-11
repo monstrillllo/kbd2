@@ -30,8 +30,8 @@ class Application(tk.Frame):
                        "Calories", "Supplier ID", "Ingredient name")
 
     def btn2Window(self):
-        TopLevelWindow(self.master, "Edit ingredient", "Ingredient to edit", "New ingredient group ID",
-                       "New calories", "New supplier ID", "New ingredient name")
+        TopLevelWindow(self.master, "Edit ingredient", "New ingredient group ID",
+                       "New calories", "New supplier ID", "New ingredient name", "Ingredient to edit")
 
     def btn3Window(self):
         TopLevelWindow(self.master, "Delete ingredient", "Ingredient name")
@@ -41,8 +41,8 @@ class Application(tk.Frame):
                        "Recipe name", "Description", "Author ID")
 
     def btn5Window(self):
-        TopLevelWindow(self.master, "Edit recipe", "Recipe to edit",
-                       "New recipe ID", "New recipe name", "New description", "New author ID")
+        TopLevelWindow(self.master, "Edit recipe", "New recipe ID", "New recipe name", "New description",
+                       "New author ID", "Recipe to edit")
 
     def btn6Window(self):
         TopLevelWindow(self.master, "Delete recipe", "Recipe name")
@@ -52,8 +52,8 @@ class Application(tk.Frame):
                        "Supplier name", "Address", "Phone")
 
     def btn8Window(self):
-        TopLevelWindow(self.master, "Edit supplier", "Supplier to edit",
-                       "New supplier ID", "New supplier name", "New address", "New phone")
+        TopLevelWindow(self.master, "Edit supplier", "New supplier ID", "New supplier name",
+                       "New address", "New phone", "Supplier to edit")
 
     def btn9Window(self):
         TopLevelWindow(self.master, "Delete supplier", "Supplier name")
