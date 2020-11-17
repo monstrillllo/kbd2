@@ -62,10 +62,11 @@ class TopLevelWindow():
         if self.title == "Delete recipe":
             connection(DeleteRecipe, val)
 
-        if self.title == "Add Supplier":
+        if self.title == "Add supplier":
+            print(val)
             connection(AddSupplier, val)
-        if self.title == "Edit Supplier":
+        if self.title == "Edit supplier":
             connection(EditSupplier, val)
-        if self.title == "Delete Supplier":
+        if self.title == "Delete supplier":
             connection(DeleteSupplier, val)
         self.newWindow.destroy()

@@ -13,7 +13,7 @@ DeleteRecipe = "DELETE FROM recipe " \
                "WHERE recipe_name = %s"
 
 AddSupplier = "INSERT INTO suppliers ( supplier_id, supplier_name, address, phone ) " \
-               "VALUES ( %s, %s, %s, %d )"
+               "VALUES ( %s, %s, %s, %s )"
 EditSupplier = "UPDATE suppliers " \
                "SET supplier_id = %s, supplier_name = %s, address = %s, phone = %s WHERE supplier_name = %s"
 DeleteSupplier = "DELETE FROM suppliers " \

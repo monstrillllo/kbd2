@@ -1,7 +1,7 @@
 from tkinter import Button
 
 
-class NewButtons():
+class NewButtons:
     def __init__(self, master, text, command, row=None, column=None):
         self.master = master
         self.text = text

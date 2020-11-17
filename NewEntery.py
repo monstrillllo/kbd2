@@ -1,6 +1,7 @@
 from tkinter import Entry
 
-class NewEntery():
+
+class NewEntery:
     def __init__(self, master, textvariable, row, column):
         self.textvariable = textvariable
         self.master = master

@@ -22,6 +22,7 @@ class connection():
         try:
             self.conn = self.connect()
             self.cursor = self.conn.cursor()
+            print(val)
             self.cursor.execute(query, val)
         except Error as e:
             print(e)
