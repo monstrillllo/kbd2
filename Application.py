@@ -23,6 +23,8 @@ class Application(tk.Frame):
         NewButtons(self, "Edit Supplier", self.btn8Window, 2, 1)
         NewButtons(self, "Delete Supplier", self.btn9Window, 2, 2)
 
+        NewButtons(self, "Price list", self.btn10Window, 3, 0)
+
         NewButtons(self, "QUIT", self.master.destroy, 3, 2)
 
     def btn1Window(self):
@@ -57,4 +59,7 @@ class Application(tk.Frame):
 
     def btn9Window(self):
         TopLevelWindow(self.master, "Delete supplier", "Supplier name")
+
+    def btn10Window(self):
+        TopLevelWindow(self.master, "Price list", "Supplier id", "Date")
 

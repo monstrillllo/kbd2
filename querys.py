@@ -18,3 +18,9 @@ EditSupplier = "UPDATE suppliers " \
                "SET supplier_id = %s, supplier_name = %s, address = %s, phone = %s WHERE supplier_name = %s"
 DeleteSupplier = "DELETE FROM suppliers " \
                  "WHERE supplier_name = %s"
+
+PriceList = "SELECT date, i.supplier_id, supplier_name, address, phone, waybill.ingredient_name, ingr_price " \
+            "FROM waybill " \
+            "INNER JOIN ingredients i on waybill.ingredient_name = i.ingredient_name " \
+            "INNER JOIN suppliers s on i.supplier_id = s.supplier_id " \
+            "WHERE  i.supplier_id= %s AND date = %s"

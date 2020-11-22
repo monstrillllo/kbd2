@@ -1,11 +1,13 @@
 from tkinter import StringVar
 from tkinter import Toplevel
+from tkinter import Listbox
 
 from NewButtons import *
 from NewLable import *
 from NewEntery import *
 from connection import *
 from querys import *
+from NewListBox import *
 
 
 class TopLevelWindow():
@@ -15,6 +17,7 @@ class TopLevelWindow():
         self.lables = args
         self.newVariable = None
         self.variables = []
+        self.info = None
         self.row = 0
         self.column = 0
         self.newWindow = Toplevel(self.master)
@@ -49,24 +52,49 @@ class TopLevelWindow():
         for vari in self.variables:
             val.append(vari.get())
         if self.title == "Add ingredient":
-            connection(AddIngr, val)
-        if self.title == "Edit ingredient":
-            connection(EditIngr, val)
-        if self.title == "Delete ingredient":
-            connection(DeleteIngr, val)
+            c1 = connection(AddIngr, val)
+            c1.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Edit ingredient":
+            c2 = connection(EditIngr, val)
+            c2.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Delete ingredient":
+            c3 = connection(DeleteIngr, val)
+            c3.addtokb()
+            self.newWindow.destroy()
 
-        if self.title == "Add recipe":
-            connection(AddRecipe, val)
-        if self.title == "Edit recipe":
-            connection(EditRecipe, val)
-        if self.title == "Delete recipe":
-            connection(DeleteRecipe, val)
+        elif self.title == "Add recipe":
+            c4 = connection(AddRecipe, val)
+            c4.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Edit recipe":
+            c5 = connection(EditRecipe, val)
+            c5.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Delete recipe":
+            c6 = connection(DeleteRecipe, val)
+            c6.addtokb()
+            self.newWindow.destroy()
 
-        if self.title == "Add supplier":
-            print(val)
-            connection(AddSupplier, val)
-        if self.title == "Edit supplier":
-            connection(EditSupplier, val)
-        if self.title == "Delete supplier":
-            connection(DeleteSupplier, val)
-        self.newWindow.destroy()
+        elif self.title == "Add supplier":
+            c7 = connection(AddSupplier, val)
+            c7.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Edit supplier":
+            c8 = connection(EditSupplier, val)
+            c8.addtokb()
+            self.newWindow.destroy()
+        elif self.title == "Delete supplier":
+            c9 = connection(DeleteSupplier, val)
+            c9.addtokb()
+            self.newWindow.destroy()
+
+        elif self.title == "Price list":
+            c10 = connection(PriceList, val)
+            self.info = c10.selectfromkb()
+            ListWindow = Toplevel(self.master)
+            lb1 = NewListBox(ListWindow, self.info)
+            lb2 = lb1.addInf()
+            lb2.pack()
+            self.newWindow.destroy()
