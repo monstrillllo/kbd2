@@ -3,7 +3,7 @@ AddIngr = "INSERT INTO ingredients ( ingr_group_id, calories, provider_id, ingre
 EditIngr = "UPDATE ingredients " \
            "SET ingr_group_id = %s, calories = %s, provider_id = %s, ingredient_name = %s WHERE ingredient_name = %s"
 DeleteIngr = "DELETE FROM ingredients " \
-           "WHERE ingredient_name = %s"
+             "WHERE ingredient_name = %s"
 
 AddRecipe = "INSERT INTO recipe ( recipe_id, recipe_name, description, author_id ) " \
             "VALUES ( %s, %s, %s, %s )"
@@ -13,7 +13,7 @@ DeleteRecipe = "DELETE FROM recipe " \
                "WHERE recipe_name = %s"
 
 AddSupplier = "INSERT INTO suppliers ( supplier_id, supplier_name, address, phone ) " \
-               "VALUES ( %s, %s, %s, %s )"
+              "VALUES ( %s, %s, %s, %s )"
 EditSupplier = "UPDATE suppliers " \
                "SET supplier_id = %s, supplier_name = %s, address = %s, phone = %s WHERE supplier_name = %s"
 DeleteSupplier = "DELETE FROM suppliers " \
@@ -24,3 +24,7 @@ PriceList = "SELECT date, i.supplier_id, supplier_name, address, phone, waybill.
             "INNER JOIN ingredients i on waybill.ingredient_name = i.ingredient_name " \
             "INNER JOIN suppliers s on i.supplier_id = s.supplier_id " \
             "WHERE  i.supplier_id= %s AND date = %s"
+
+Food_RecipeList = "SELECT food_name, recipe_name " \
+           "FROM food " \
+           "INNER JOIN recipe r on food.recipe_id = r.recipe_id"

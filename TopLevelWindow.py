@@ -22,9 +22,10 @@ class TopLevelWindow():
         self.column = 0
         self.newWindow = Toplevel(self.master)
         self.newWindow.title("%s" % self.title)
-        self.addLables()
-        self.addEntery()
-        self.addButtons()
+        if self.title != "Food-Recipe list":
+            self.addLables()
+            self.addEntery()
+            self.addButtons()
 
     def addLables(self):
         for lab in self.lables:
@@ -46,6 +47,13 @@ class TopLevelWindow():
             self.column += 1
         self.column = 0
         self.row += 1
+
+    def ToTable(self):
+        c1 = connection(Food_RecipeList)
+        self.info = c1.selectWithoutParams()
+        lb1 = NewListBox(self.newWindow, self.info)
+        lb2 = lb1.addInf()
+        lb2.pack()
 
     def tokb(self):
         val = []

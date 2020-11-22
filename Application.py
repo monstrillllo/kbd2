@@ -24,6 +24,7 @@ class Application(tk.Frame):
         NewButtons(self, "Delete Supplier", self.btn9Window, 2, 2)
 
         NewButtons(self, "Price list", self.btn10Window, 3, 0)
+        NewButtons(self, "Food-Recipe list", self.btn11Window, 3, 1)
 
         NewButtons(self, "QUIT", self.master.destroy, 3, 2)
 
@@ -63,3 +64,6 @@ class Application(tk.Frame):
     def btn10Window(self):
         TopLevelWindow(self.master, "Price list", "Supplier id", "Date")
 
+    def btn11Window(self):
+        w1 = TopLevelWindow(self.master, "Food-Recipe list")
+        w1.ToTable()
