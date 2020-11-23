@@ -28,3 +28,13 @@ PriceList = "SELECT date, i.supplier_id, supplier_name, address, phone, waybill.
 Food_RecipeList = "SELECT food_name, recipe_name " \
            "FROM food " \
            "INNER JOIN recipe r on food.recipe_id = r.recipe_id"
+
+Low_calorie_dish = "SELECT food_name "\
+                   "FROM food "\
+                   "WHERE recipe_id = (SELECT recipe_id "\
+                   "FROM(SELECT recipe_id, SUM(calories * gramme) as sum "\
+                   "FROM ingredients "\
+                   "INNER JOIN layout_of_ingredients loi on ingredients.ingredient_name = loi.ingredient_name "\
+                   "GROUP BY recipe_id) as ris "\
+                   "ORDER BY sum LIMIT 1)"
+

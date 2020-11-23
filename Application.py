@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from TopLevelWindow import *
+from querys import *
 
 
 class Application(tk.Frame):
@@ -25,8 +26,9 @@ class Application(tk.Frame):
 
         NewButtons(self, "Price list", self.btn10Window, 3, 0)
         NewButtons(self, "Food-Recipe list", self.btn11Window, 3, 1)
+        NewButtons(self, "Low-calorie dish", self.btn12Window, 3, 2)
 
-        NewButtons(self, "QUIT", self.master.destroy, 3, 2)
+        NewButtons(self, "QUIT", self.master.destroy, 4, 2)
 
     def btn1Window(self):
         TopLevelWindow(self.master, "Add ingredient", "Ingredient group ID",
@@ -66,4 +68,8 @@ class Application(tk.Frame):
 
     def btn11Window(self):
         w1 = TopLevelWindow(self.master, "Food-Recipe list")
-        w1.ToTable()
+        w1.ToTable(Food_RecipeList)
+
+    def btn12Window(self):
+        w2 = TopLevelWindow(self.master, "Low-calorie dish")
+        w2.ToTable(Low_calorie_dish)

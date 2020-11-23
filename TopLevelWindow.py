@@ -22,7 +22,7 @@ class TopLevelWindow():
         self.column = 0
         self.newWindow = Toplevel(self.master)
         self.newWindow.title("%s" % self.title)
-        if self.title != "Food-Recipe list":
+        if (self.title != "Food-Recipe list") and (self.title != "Low-calorie dish"):
             self.addLables()
             self.addEntery()
             self.addButtons()
@@ -48,8 +48,8 @@ class TopLevelWindow():
         self.column = 0
         self.row += 1
 
-    def ToTable(self):
-        c1 = connection(Food_RecipeList)
+    def ToTable(self, query):
+        c1 = connection(query)
         self.info = c1.selectWithoutParams()
         lb1 = NewListBox(self.newWindow, self.info)
         lb2 = lb1.addInf()
@@ -101,6 +101,15 @@ class TopLevelWindow():
         elif self.title == "Price list":
             c10 = connection(PriceList, val)
             self.info = c10.selectfromkb()
+            ListWindow = Toplevel(self.master)
+            lb1 = NewListBox(ListWindow, self.info)
+            lb2 = lb1.addInf()
+            lb2.pack()
+            self.newWindow.destroy()
+
+        elif self.title == "Low-calorie dish":
+            c11 = connection(Low_calorie_dish, val)
+            self.info = c11.selectfromkb()
             ListWindow = Toplevel(self.master)
             lb1 = NewListBox(ListWindow, self.info)
             lb2 = lb1.addInf()

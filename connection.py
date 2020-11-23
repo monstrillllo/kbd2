@@ -1,7 +1,5 @@
 import mysql.connector
 from mysql.connector import Error
-from NewListBox import *
-from TopLevelWindow import *
 
 
 class connection():
