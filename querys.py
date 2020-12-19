@@ -1,7 +1,7 @@
-AddIngr = "INSERT INTO ingredients ( ingr_group_id, calories, provider_id, ingredient_name ) " \
+AddIngr = "INSERT INTO ingredients ( ingr_group_id, calories, supplier_id, ingredient_name ) " \
           "VALUES ( %s, %s, %s, %s )"
 EditIngr = "UPDATE ingredients " \
-           "SET ingr_group_id = %s, calories = %s, provider_id = %s, ingredient_name = %s WHERE ingredient_name = %s"
+           "SET ingr_group_id = %s, calories = %s, supplier_id = %s, ingredient_name = %s WHERE ingredient_name = %s"
 DeleteIngr = "DELETE FROM ingredients " \
              "WHERE ingredient_name = %s"
 
